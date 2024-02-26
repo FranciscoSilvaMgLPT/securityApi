@@ -1,0 +1,21 @@
+version: "3.9"
+
+networks:
+  database_net:
+    name: database_net
+    driver: bridge
+
+services:
+  database:
+    image: postgres
+    container_name: securitydb
+    volumes:
+      - ~/.docker-conf/postgres/data/:/var/lib/postgres
+    ports:
+      - 5444:5432
+    environment:
+      POSTGRES_USER: mindera
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: securitydb
+    networks:
+      - database_net
